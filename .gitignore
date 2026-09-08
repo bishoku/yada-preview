@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Production build
+dist/
+
+# Test & Coverage
+coverage/
+*.lcov
+
+# Logs & Environment
+*.log
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# User private publishing guide (do not commit to Git)
+PUBLISHING.md

@@ -1,0 +1,348 @@
+@keyframes yada-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes yada-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes yada-zoom-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Root container */
+.yada-preview-root {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-preview-root {
+    background-color: #090d16;
+    border-color: #1e293b;
+  }
+}
+
+.yada-preview-root:hover {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08);
+}
+
+/* Media wrapper maintaining dimensions / aspect ratio */
+.yada-preview-media-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Static image */
+.yada-preview-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  border-radius: inherit;
+  transition: opacity 0.2s ease;
+}
+
+/* Simulation Iframe */
+.yada-preview-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #ffffff;
+  border-radius: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-preview-iframe {
+    background-color: #0b0f19;
+  }
+}
+
+/* Floating Play Button Badge */
+.yada-preview-play-btn {
+  position: absolute;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #047857;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(16, 185, 129, 0.25);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.yada-preview-play-btn:hover {
+  background: #ffffff;
+  color: #065f46;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.24), 0 0 0 1px rgba(16, 185, 129, 0.4);
+  transform: translateY(-1px);
+}
+
+.yada-preview-play-btn:active {
+  transform: scale(0.96);
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-preview-play-btn {
+    color: #34d399;
+    background: rgba(15, 23, 42, 0.88);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(52, 211, 153, 0.3);
+  }
+  .yada-preview-play-btn:hover {
+    background: rgba(15, 23, 42, 0.98);
+    color: #6ee7b7;
+    box-shadow: 0 4px 14px rgba(52, 211, 153, 0.25), 0 0 0 1px rgba(52, 211, 153, 0.5);
+  }
+}
+
+/* Position variants */
+.yada-preview-pos-top-right {
+  top: 12px;
+  right: 12px;
+}
+
+.yada-preview-pos-bottom-right {
+  bottom: 12px;
+  right: 12px;
+}
+
+.yada-preview-pos-top-left {
+  top: 12px;
+  left: 12px;
+}
+
+.yada-preview-pos-bottom-left {
+  bottom: 12px;
+  left: 12px;
+}
+
+.yada-preview-pos-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 18px;
+  font-size: 14px;
+}
+
+.yada-preview-pos-center:hover {
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.yada-preview-pos-center:active {
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+/* Floating Toolbar */
+.yada-preview-toolbar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-preview-toolbar {
+    background: rgba(15, 23, 42, 0.88);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.yada-preview-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.yada-preview-toolbar-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #0f172a;
+}
+
+.yada-preview-toolbar-btn:active {
+  transform: scale(0.92);
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-preview-toolbar-btn {
+    color: #94a3b8;
+  }
+  .yada-preview-toolbar-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f1f5f9;
+  }
+}
+
+.yada-preview-toolbar-btn-sim-active {
+  color: #059669;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-preview-toolbar-btn-sim-active {
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.2);
+  }
+}
+
+/* Modal Overlay & Dialog */
+.yada-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: yada-fade-in 0.2s ease;
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.yada-modal-window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
+  height: 92vh;
+  max-width: 1600px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: yada-zoom-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-modal-window {
+    background-color: #0f172a;
+    border-color: #334155;
+  }
+}
+
+.yada-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-modal-header {
+    background: #1e293b;
+    border-bottom-color: #334155;
+  }
+}
+
+.yada-modal-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-modal-title {
+    color: #e2e8f0;
+  }
+}
+
+.yada-modal-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.yada-modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-modal-close-btn {
+    color: #94a3b8;
+  }
+  .yada-modal-close-btn:hover {
+    background: #334155;
+    color: #f8fafc;
+  }
+}
+
+.yada-modal-body {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background-color: #f8fafc;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .yada-modal-body {
+    background-color: #090d16;
+  }
+}
