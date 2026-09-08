@@ -4,6 +4,14 @@
   "description": "Interactive YADA architecture diagram preview and live simulation component for React",
   "author": "barishoku",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bishoku/yada-preview.git"
+  },
+  "homepage": "https://github.com/bishoku/yada-preview#readme",
+  "bugs": {
+    "url": "https://github.com/bishoku/yada-preview/issues"
+  },
   "keywords": [
     "react",
     "yada",
