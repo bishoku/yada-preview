@@ -1,6 +1,6 @@
 {
   "name": "yada-preview",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Interactive YADA architecture diagram preview and live simulation component for React",
   "author": "barishoku",
   "license": "MIT",
